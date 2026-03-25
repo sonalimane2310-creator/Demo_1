@@ -1,0 +1,37 @@
+package com.testng;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Alerts {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		String text="Rahul";
+
+		System.setProperty("webdriver.chrome.driver", "C:\\SeleniumWebdriver_JarFiles\\chromedriver-win64\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+
+		driver.findElement(By.id("name")).sendKeys(text);
+
+		driver.findElement(By.cssSelector("[id='alertbtn']")).click();
+		
+
+		System.out.println(driver.switchTo().alert().getText()); // get text before click on OK
+
+		driver.switchTo().alert().accept();   //only OK button is there
+
+		driver.findElement(By.id("confirmbtn")).click();
+
+		System.out.println(driver.switchTo().alert().getText()); // get text before click on Cancel
+
+        driver.switchTo().alert().dismiss();  //OK and Cancel 2 options are there, click on Cancel, OK means positivity side 
+
+	}
+
+}
